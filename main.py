@@ -102,8 +102,10 @@ def main(users: dict):
     def fill_competition_group(users_ids):
         for user_id in users_ids:
             if users[user_id] and (application := users[user_id].pop(0)):
-                competition_group[application["course"]] = competition_group.get(application["course"], []) + [
-                    [user_id, application]]
+                competition_group[application["course"]] = (competition_group.get(application["course"], []) +
+                                                            [[user_id, application]])
+            else:
+                print(user_id)
 
     # Убирает людей, которые не прошли по конкурсу, из competition_group и добавляет их в not_added_users
     def filter_competition_group():
